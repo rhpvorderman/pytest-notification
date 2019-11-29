@@ -30,6 +30,14 @@ def notify(header: str,
            message: Optional[str] = None,
            urgency: Optional[str] = None,
            icon: Optional[str] = None):
+    """
+    Send a notification to the desktop.
+    :param header: Header to the message.
+    :param message: Actual message.
+    :param urgency: String denoting the urgency.
+    :param icon: Icon identifier or path.
+    :return:
+    """
 
     if sys.platform == "linux":
         # Icon names specified by freedesktop standard.
@@ -44,6 +52,16 @@ def _notify_linux(summary: str,
                   message: Optional[str] = None,
                   urgency: Optional[str] = None,
                   icon: Optional[str] = None):
+    """
+    Interface to the notify-send command on linux
+    :param summary: The summary message. Will be displayed in bold on the top
+                    of the message.
+    :param message: Additional message. Will be displayed in plain font.
+    :param urgency: Urgency as used by notify-send.
+    :param icon: Icon to use. Can be an identifier or a path. If the icon is
+                 unknown/does not exist, no icon will be displayed.
+    :return:
+    """
     args = ["notify-send"]
     if urgency is not None:
         args.extend(["--urgency", urgency])

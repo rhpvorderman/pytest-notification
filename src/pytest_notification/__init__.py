@@ -17,3 +17,15 @@
 # LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
+
+from .notifications import notify
+from .sound import DEFAULT_FAIL_SOUND, DEFAULT_SUCCESS_SOUND, play_sound
+
+# Allow importing notify and play sound more easily. Hide the rest of the
+# plugin as it is not very useful for external use.
+__all__ = [
+    "notify",
+    "play_sound",
+    "DEFAULT_FAIL_SOUND",
+    "DEFAULT_SUCCESS_SOUND"
+]

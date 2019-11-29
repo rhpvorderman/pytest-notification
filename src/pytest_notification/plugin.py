@@ -34,24 +34,29 @@ def pytest_addoption(parser: PytestParser):
 
 
 def pytest_sessionfinish(session: pytest.Session, exitstatus: int):
+    summary = "Pytest"
+    success = exitstatus == 0
+    message = ("All tests are succesfull!" if success
+               else "Failing tests detected!")
+    icon = "weather-clear" if success else "weather-storm"
+
     if session.config.getoption("notify"):
-        notify_pytest_result(exitstatus == 0)
+        notify_result(summary, message, icon=icon)
 
 
-def notify_pytest_result(success: bool):
+def notify_result(summary: str,
+                  message: Optional[str] = None,
+                  urgency: Optional[str] = None,
+                  icon: Optional[str] = None):
     """
     Sends a message to the desktop about the pytest result.
     :param success: Whether to send a success or a fail job.
     :return: None. Returns a message on the system.
     """
-    summary = "Pytest"
-    message = ("All tests are succesfull!" if success
-               else "Failing tests detected!")
 
     if sys.platform == "linux":
         # Icon names specified by freedesktop standard.
-        icon = "weather-clear" if success else "weather-storm"
-        _notify_linux(summary, message, icon=icon)
+        _notify_linux(summary, message, urgency, icon)
 
     else:  # Other platforms
         raise NotImplementedError("Systems other than Linux are not "

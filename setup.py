@@ -59,5 +59,5 @@ setup(
     # installed in the same environment as pytest. No need to configure
     # conftest.py to enable this plugin.
     entry_points={"pytest11":
-                      ["pytest-notification = pytest_notification.plugin"]}
+                  ["pytest-notification = pytest_notification.plugin"]}
 )

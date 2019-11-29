@@ -19,6 +19,7 @@
 # SOFTWARE.
 
 from _pytest.config.argparsing import Parser as PytestParser
+
 import pytest
 
 from .notifications import DEFAULT_FAIL_ICON, DEFAULT_SUCCESS_ICON, notify

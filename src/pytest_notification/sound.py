@@ -50,4 +50,5 @@ def _play_sound_unix(sound_file: str, program):
     :param program: Which program to use.
     :return: No returns. Plays a sound file.
     """
-    subprocess.run([program, sound_file])
+    # Play the sound non blocking, use Popen.
+    subprocess.Popen([program, sound_file])

@@ -22,6 +22,7 @@ from _pytest.config.argparsing import Parser as PytestParser
 import pytest
 
 from .notifications import DEFAULT_FAIL_ICON, DEFAULT_SUCCESS_ICON, notify
+from .sound import DEFAULT_FAIL_SOUND, DEFAULT_SUCCESS_SOUND, play_sound
 
 
 def pytest_addoption(parser: PytestParser):
@@ -30,9 +31,13 @@ def pytest_addoption(parser: PytestParser):
     This function is used by pytest. It is not meant to be called from outside.
     """
     parser.addoption("--notify", action="store_true",
-                     help="Sends a desktop notification when workflows are "
+                     help="Sends a desktop notification when pytest is "
                           "finished. (Only implemented on Linux. Requires the "
                           "'notify-send' program in PATH on Linux.")
+
+    parser.addoption("--sound", "--play-sound", action="store_true",
+                     help="Plays a sound when pytest is finished. (Only "
+                          "implemented on Linux and Macintosh systems).")
 
 
 def pytest_sessionfinish(session: pytest.Session, exitstatus: int):
@@ -47,3 +52,9 @@ def pytest_sessionfinish(session: pytest.Session, exitstatus: int):
         else:
             notify("Pytest", "Failing tests detected!",
                    icon=DEFAULT_FAIL_ICON)
+
+    if session.config.getoption("sound"):
+        if exitstatus == 0:
+            play_sound(DEFAULT_SUCCESS_SOUND)
+        else:
+            play_sound(DEFAULT_FAIL_SOUND)

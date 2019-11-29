@@ -41,13 +41,13 @@ def pytest_sessionfinish(session: pytest.Session, exitstatus: int):
     icon = "weather-clear" if success else "weather-storm"
 
     if session.config.getoption("notify"):
-        notify_result(summary, message, icon=icon)
+        notify(summary, message, icon=icon)
 
 
-def notify_result(summary: str,
-                  message: Optional[str] = None,
-                  urgency: Optional[str] = None,
-                  icon: Optional[str] = None):
+def notify(summary: str,
+           message: Optional[str] = None,
+           urgency: Optional[str] = None,
+           icon: Optional[str] = None):
     """
     Sends a message to the desktop about the pytest result.
     :param success: Whether to send a success or a fail job.

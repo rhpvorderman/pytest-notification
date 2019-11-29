@@ -51,6 +51,10 @@ setup(
     install_requires=[
         "pytest>=4"
     ],
+    package_data={
+        'pytest_notification': ['sounds/*.oga',
+                                'sounds/README.rst']
+    },
     # This line makes sure the plugin is automatically loaded when it is
     # installed in the same environment as pytest. No need to configure
     # conftest.py to enable this plugin.

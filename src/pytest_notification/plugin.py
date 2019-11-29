@@ -25,6 +25,10 @@ from .notifications import DEFAULT_FAIL_ICON, DEFAULT_SUCCESS_ICON, notify
 
 
 def pytest_addoption(parser: PytestParser):
+    """
+    Add options to the pytest parser. Works like the built-in argparse module.
+    This function is used by pytest. It is not meant to be called from outside.
+    """
     parser.addoption("--notify", action="store_true",
                      help="Sends a desktop notification when workflows are "
                           "finished. (Only implemented on Linux. Requires the "
@@ -32,6 +36,10 @@ def pytest_addoption(parser: PytestParser):
 
 
 def pytest_sessionfinish(session: pytest.Session, exitstatus: int):
+    """
+    Hook function used by pytest. This code will be run at the end of a
+    pytest session.
+    """
     if session.config.getoption("notify"):
         if exitstatus == 0:
             notify("Pytest", "All tests are succesfull!",

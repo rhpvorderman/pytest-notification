@@ -18,12 +18,10 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-import subprocess
-import sys
-from typing import Optional
-
 from _pytest.config.argparsing import Parser as PytestParser
 import pytest
+
+from .notifications import DEFAULT_FAIL_ICON, DEFAULT_SUCCESS_ICON, notify
 
 
 def pytest_addoption(parser: PytestParser):
@@ -34,50 +32,10 @@ def pytest_addoption(parser: PytestParser):
 
 
 def pytest_sessionfinish(session: pytest.Session, exitstatus: int):
-    summary = "Pytest"
-    success = exitstatus == 0
-    message = ("All tests are succesfull!" if success
-               else "Failing tests detected!")
-    icon = "weather-clear" if success else "weather-storm"
-
     if session.config.getoption("notify"):
-        notify(summary, message, icon=icon)
-
-
-def notify(summary: str,
-           message: Optional[str] = None,
-           urgency: Optional[str] = None,
-           icon: Optional[str] = None):
-    """
-    Sends a message to the desktop about the pytest result.
-    :param success: Whether to send a success or a fail job.
-    :return: None. Returns a message on the system.
-    """
-
-    if sys.platform == "linux":
-        # Icon names specified by freedesktop standard.
-        _notify_linux(summary, message, urgency, icon)
-
-    else:  # Other platforms
-        raise NotImplementedError("Systems other than Linux are not "
-                                  "implemented for notifications")
-
-
-def _notify_linux(summary: str,
-                  message: Optional[str] = None,
-                  urgency: Optional[str] = None,
-                  icon: Optional[str] = None):
-    args = ["notify-send"]
-    if urgency is not None:
-        args.extend(["--urgency", urgency])
-    if icon is not None:
-        args.extend(["--icon", icon])
-    args.append(summary)
-    if message is not None:
-        args.append(message)
-    try:
-        subprocess.run(args)
-    except FileNotFoundError as error:
-        raise FileNotFoundError("The program 'notify-send' must be installed "
-                                "on the system for notifications to work. "
-                                + str(error))
+        if exitstatus == 0:
+            notify("Pytest", "All tests are succesfull!",
+                   icon=DEFAULT_SUCCESS_ICON)
+        else:
+            notify("Pytest", "Failing tests detected!",
+                   icon=DEFAULT_FAIL_ICON)

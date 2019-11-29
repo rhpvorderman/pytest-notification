@@ -22,7 +22,7 @@ import subprocess
 import sys
 from pathlib import Path
 
-SOUNDS_DIR = (Path(__file__).parent / Path("sounds")).absolute
+SOUNDS_DIR = (Path(__file__).parent / Path("sounds")).absolute()
 DEFAULT_SUCCESS_SOUND = str(SOUNDS_DIR / Path("applause.oga"))
 DEFAULT_FAIL_SOUND = str(SOUNDS_DIR / Path("buzzer.oga"))
 

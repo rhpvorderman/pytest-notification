@@ -30,10 +30,9 @@ def play_sound(sound_file: str):
     elif sys.platform == "darwin":
         # Afplay comes installed by default on Macintosh
         _play_sound_unix(sound_file, program="afplay")
-    elif sys.platform == "win32":
-        import winsound
-        winsound.PlaySound(sound_file)
     else:
+        # A windows implementation should be possible with the winsound
+        # implementation, but that does not play ogg audio.
         raise NotImplementedError(
             "Playing sounds not supported by pytest-notification on {}"
             "".format(sys.platform))

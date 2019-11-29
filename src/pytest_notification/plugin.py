@@ -22,6 +22,21 @@ import subprocess
 import sys
 from typing import Optional
 
+from _pytest.config.argparsing import Parser as PytestParser
+import pytest
+
+
+def pytest_addoption(parser: PytestParser):
+    parser.addoption("--notify", action="store_true",
+                     help="Sends a desktop notification when workflows are "
+                          "finished. (Only implemented on Linux. Requires the "
+                          "'notify-send' program in PATH on Linux.")
+
+
+def pytest_sessionfinish(session: pytest.Session, exitstatus: int):
+    if session.config.getoption("notify"):
+        notify_pytest_result(exitstatus == 0)
+
 
 def notify_pytest_result(success: bool):
     """

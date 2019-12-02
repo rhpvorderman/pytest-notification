@@ -23,7 +23,7 @@ def test_success():
     assert 1 == 1
 """
 
-FALING_TEST = """
+FAILING_TEST = """
 def test_fail():
     assert 1 == 0
 """
@@ -31,5 +31,11 @@ def test_fail():
 
 def test_successful_test(testdir):
     testdir.makefile(".py", test_success=SUCCESSFULL_TEST)
-    result = testdir.runpytest()
+    result = testdir.runpytest("--sound", "--notify")
     assert result.ret == 0
+
+
+def test_fail_test(testdir):
+    testdir.makefile(".py", test_fail=FAILING_TEST)
+    result = testdir.runpytest("--sound", "--notify")
+    assert result.ret != 0

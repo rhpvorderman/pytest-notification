@@ -18,18 +18,18 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from pytest_notification import DEFAULT_SUCCESS_SOUND, DEFAULT_FAIL_SOUND, \
-    notify, play_sound
+SUCCESSFULL_TEST = """
+def test_success():
+    assert 1 == 1
+"""
+
+FALING_TEST = """
+def test_fail():
+    assert 1 == 0
+"""
 
 
-def test_notify():
-    notify("Success!", "This message displayed correctly "
-                       "and python did not crash.", icon="info")
-
-
-def test_fail_sound():
-    play_sound(DEFAULT_FAIL_SOUND)
-
-
-def test_success_sound():
-    play_sound(DEFAULT_SUCCESS_SOUND)
+def test_successful_test(testdir):
+    testdir.makefile(".py", test_success=SUCCESSFULL_TEST)
+    result = testdir.runpytest()
+    assert result.ret == 0

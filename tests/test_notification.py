@@ -18,7 +18,7 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from pytest_notification import DEFAULT_SUCCESS_SOUND, DEFAULT_FAIL_SOUND, \
+from pytest_notification import DEFAULT_FAIL_SOUND, DEFAULT_SUCCESS_SOUND, \
     notify, play_sound
 
 

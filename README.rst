@@ -1,6 +1,32 @@
 Pytest-notification
 ===================
 
+.. Badges have empty alts. So nothing shows up if they do not work.
+.. This fixes readthedocs issues with badges.
+.. image:: https://img.shields.io/pypi/v/pytest-notification.svg
+  :target: https://pypi.org/project/pytest-notification/
+  :alt:
+
+.. image:: https://img.shields.io/conda/v/conda-forge/pytest-notification.svg
+  :target: https://anaconda.org/conda-forge/pytest-notification
+  :alt:
+
+.. image:: https://img.shields.io/pypi/pyversions/pytest-notification.svg
+  :target: https://pypi.org/project/pytest-notification/
+  :alt:
+
+.. image:: https://img.shields.io/pypi/l/pytest-notification.svg
+  :target: https://github.com/LUMC/pytest-notification/blob/master/LICENSE
+  :alt:
+
+.. image:: https://travis-ci.org/LUMC/pytest-notification.svg?branch=develop
+  :target: https://travis-ci.org/LUMC/pytest-notification
+  :alt:
+
+.. image:: https://codecov.io/gh/LUMC/pytest-notification/branch/develop/graph/badge.svg
+  :target: https://codecov.io/gh/LUMC/pytest-notification
+  :alt:
+
 A plugin for pytest that sends notifications if a ``--notify`` flag is passed
 to pytest on the command line. It plays sounds when a ``--sound`` or
 ``--play-sound`` flag is passed.

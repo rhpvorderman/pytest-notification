@@ -1,5 +1,6 @@
 language: python
 install:
+  - sudo apt update
   - sudo apt install -y pulseaudio-utils libnotify-bin
   - pip install tox
 dist: xenial

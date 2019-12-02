@@ -32,9 +32,9 @@ def test_notify():
                        "and python did not crash.", icon="info")
 
 
-def test_notify_no_path_linux():
-    if sys.platform == "linux":
-        # TODO: Make sure this fails
-        os.unsetenv("PATH")
-        os.environ.unsetenv("PATH")
-        notify("nosuccess")
+def test_fail_sound():
+    play_sound(DEFAULT_FAIL_SOUND)
+
+
+def test_success_sound():
+    play_sound(DEFAULT_SUCCESS_SOUND)

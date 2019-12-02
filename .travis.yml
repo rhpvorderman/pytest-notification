@@ -1,6 +1,6 @@
 language: python
 install:
-  - apt install pulseaudio-utils libnotify-bin
+  - sudo apt install -y pulseaudio-utils libnotify-bin
   - pip install tox
 dist: xenial
 python: 3.5  # Use the oldest supported version of python as default.
@@ -21,12 +21,9 @@ matrix:
       env: TOX_ENV=py38
     - python: 3.5
       env: TOX_ENV=py35
-      install:
-        - apt install pulseaudio-utils libnotify-bin
+      after_success:
         - pip install codacy-coverage
         - pip install codecov
-        - pip install tox
-      after_success:
         # Correct coverage xml for coverage services.
         - >
           bash -c 'set -eux;

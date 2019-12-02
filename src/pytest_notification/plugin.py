@@ -40,13 +40,19 @@ def pytest_addoption(parser: PytestParser):
                      help="Plays a sound when pytest is finished. (Only "
                           "implemented on Linux and Macintosh systems).")
 
+    parser.addoption("--disturb", action="store_true",
+                     help="Alias for --notify --sound")
 
 def pytest_sessionfinish(session: pytest.Session, exitstatus: int):
     """
     Hook function used by pytest. This code will be run at the end of a
     pytest session.
     """
-    if session.config.getoption("notify"):
+    notify_on = session.config.getoption("notify")
+    sound_on = session.config.getoption("sound")
+    disturb = session.config.getoption("disturb")
+
+    if notify_on or disturb:
         if exitstatus == 0:
             notify("Pytest", "All tests are succesfull!",
                    icon=DEFAULT_SUCCESS_ICON)
@@ -54,7 +60,7 @@ def pytest_sessionfinish(session: pytest.Session, exitstatus: int):
             notify("Pytest", "Failing tests detected!",
                    icon=DEFAULT_FAIL_ICON)
 
-    if session.config.getoption("sound"):
+    if sound_on or disturb:
         if exitstatus == 0:
             play_sound(DEFAULT_SUCCESS_SOUND)
         else:

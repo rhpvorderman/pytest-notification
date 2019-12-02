@@ -37,5 +37,5 @@ def test_successful_test(testdir):
 
 def test_fail_test(testdir):
     testdir.makefile(".py", test_fail=FAILING_TEST)
-    result = testdir.runpytest("--sound", "--notify")
-    assert result.ret != 0
+    result = testdir.runpytest("--disturb")
+    assert result.ret == 1

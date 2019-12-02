@@ -45,6 +45,7 @@ setup(
         "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
+        "Intended Audience :: Developers",
         "License :: OSI Approved :: MIT License",
         "Framework :: Pytest",
     ],

@@ -9,8 +9,9 @@ Changelog
 
 version 0.1.0-dev
 ---------------------------
-+ Implemented testing and continuous integration
-+ Write documentation in README.rst
-+ Added ability to play sounds on Linux
-+ Added ability to send notifications on Linux
-+ Started on pytest-notification plugin
++ Added ``--disturb`` option as a shorthand.
++ Implemented testing and continuous integration.
++ Write documentation in README.rst.
++ Added ability to play sounds on Linux.
++ Added ability to send notifications on Linux.
++ Started on pytest-notification plugin.

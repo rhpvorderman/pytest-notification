@@ -43,6 +43,7 @@ def pytest_addoption(parser: PytestParser):
     parser.addoption("--disturb", action="store_true",
                      help="Alias for --notify --sound")
 
+
 def pytest_sessionfinish(session: pytest.Session, exitstatus: int):
     """
     Hook function used by pytest. This code will be run at the end of a

@@ -26,7 +26,8 @@ with open("README.rst", "r") as readme_file:
 setup(
     name="pytest-notification",
     version="0.1.0-dev",
-    description="A pytest plugin for sending a desktop notification",
+    description="A pytest plugin for sending a desktop notification and "
+                "playing a sound upon completion of tests",
     author="Ruben Vorderman",
     author_email="r.h.p.vorderman@lumc.nl",
     long_description=LONG_DESCRIPTION,

@@ -22,13 +22,24 @@ Pytest-notifier has been around for a long time and is still being actively
 maintained. It does not support playing sounds, but it does support Mac OS X
 notifications.
 
+Usage
+=====
+
+=================================== =======
+option                              usage
+=================================== =======
+``--notify``                        Sends a desktop notification when pytest is finished. (Only implemented on Linux. Requires the 'notify-send' program in PATH on Linux.
+``--sound``, ``--play-sound``       Plays a sound when pytest is finished. (Only implemented on Linux and Macintosh systems).
+``--disturb``                       shorthand for ``--notify --sound``
+=================================== =======
+
 Installation
 ============
 
+pytest-notification can be installed with ``pip install pytest-notification``.
+
 Linux
 -----
-
-pytest-notification can be installed with ``pip install pytest-notification``.
 
 On Linux notifications are supported via the ``notify-send`` program. On Debian,
 Ubuntu and derived distros this is available in the ``libnotify-bin`` package.
@@ -38,7 +49,8 @@ derived distros this available in the ``pulseaudio-utils`` pacakge.
 
 The installation for Ubuntu should be:
 
-.. code-block::bash
+.. code-block:: bash
+
     sudo apt update
     sudo apt install libnotify-bin pulseaudio-utils
     pip install pytest-notification
@@ -51,15 +63,24 @@ On Mac OS X sound is implemented via the ``afplay`` program, which should be
 installed by default. Since I do not own a mac I can not test this feature.
 pull requests are welcome.
 
-On Mac OS X notifications are not supported. Feel free to make a pull request.
+On Mac OS X notifications are not supported.
 Alternatively you could take a look at `pytest-notifier
 <https://github.com/ratson/pytest-notifier>`_, which does support Mac OS X.
 
 Windows
 -------
-Windows is not supported. In theory the ``winsound`` module could be used to
+Windows is not supported.
+
+Contributing
+============
+Pull requests for improved Mac and Windows support are welcome. As well as ideas
+and other pull requests. Simply create a new issue or PR on the `github page
+<https://github.com/rhpvorderman/pytest-notification>`_.
+
+Windows  support
+----------------
+In theory the ``winsound`` module could be used to
 play sounds, but this only supports wave files. These are very big and
 cumbersome to distribute. I have not actively looked for a way to create a
 message on windows. There will probably be some powershell command that can
 pull this off. Pull requests are welcome.
-

@@ -1,0 +1,9 @@
+comment: off
+coverage:
+  status:
+    project:
+      default:
+        target: 80  # 90 Is preferable, but not possible due to OS differences
+    patch:
+      default:
+        target: 80  # Tests should be written for new features

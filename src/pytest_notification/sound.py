@@ -27,7 +27,7 @@ DEFAULT_SUCCESS_SOUND = SOUNDS_DIR / Path("applause")
 DEFAULT_FAIL_SOUND = SOUNDS_DIR / Path("buzzer")
 
 
-def play_sound(sound_file: str):
+def play_sound(sound_file: Path):
     if sys.platform == "linux":
         # paplay comes from PulseAudio and should be installed by default on
         # most systems.

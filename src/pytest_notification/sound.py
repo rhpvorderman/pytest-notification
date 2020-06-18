@@ -23,18 +23,18 @@ import sys
 from pathlib import Path
 
 SOUNDS_DIR = (Path(__file__).parent / Path("sounds")).absolute()
-DEFAULT_SUCCESS_SOUND = str(SOUNDS_DIR / Path("applause.oga"))
-DEFAULT_FAIL_SOUND = str(SOUNDS_DIR / Path("buzzer.oga"))
+DEFAULT_SUCCESS_SOUND = SOUNDS_DIR / Path("applause")
+DEFAULT_FAIL_SOUND = SOUNDS_DIR / Path("buzzer")
 
 
 def play_sound(sound_file: str):
     if sys.platform == "linux":
         # paplay comes from PulseAudio and should be installed by default on
         # most systems.
-        _play_sound_unix(sound_file, program="paplay")
+        _play_sound_unix(sound_file.with_suffix(".oga"), program="paplay")
     elif sys.platform == "darwin":
         # Afplay comes installed by default on Macintosh
-        _play_sound_unix(sound_file, program="afplay")
+        _play_sound_unix(sound_file.with_suffix(".mp3"), program="afplay")
     else:
         # A windows implementation should be possible with the winsound
         # implementation, but that does not play ogg audio.
@@ -43,7 +43,7 @@ def play_sound(sound_file: str):
             "".format(sys.platform))
 
 
-def _play_sound_unix(sound_file: str, program):
+def _play_sound_unix(sound_file: Path, program):
     """
     Play a sound file on unix with the program.
     :param sound_file: Path to the sound file.
@@ -51,4 +51,4 @@ def _play_sound_unix(sound_file: str, program):
     :return: No returns. Plays a sound file.
     """
     # Play the sound non blocking, use Popen.
-    subprocess.Popen([program, sound_file])
+    subprocess.Popen([program, str(sound_file)])

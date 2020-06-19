@@ -25,7 +25,7 @@ with open("README.rst", "r") as readme_file:
 
 setup(
     name="pytest-notification",
-    version="0.1.0",
+    version="0.2.0",
     description="A pytest plugin for sending a desktop notification and "
                 "playing a sound upon completion of tests",
     author="Ruben Vorderman",
@@ -54,8 +54,7 @@ setup(
         "pytest>=4"
     ],
     package_data={
-        'pytest_notification': ['sounds/*.oga',
-                                'sounds/README.rst']
+        'pytest_notification': ['sounds/*']
     },
     # This line makes sure the plugin is automatically loaded when it is
     # installed in the same environment as pytest. No need to configure

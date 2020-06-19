@@ -16,15 +16,15 @@ Pytest-notification
   :alt:
 
 .. image:: https://img.shields.io/pypi/l/pytest-notification.svg
-  :target: https://github.com/LUMC/pytest-notification/blob/master/LICENSE
+  :target: https://github.com/rhpvorderman/pytest-notification/blob/master/LICENSE
   :alt:
 
-.. image:: https://travis-ci.org/LUMC/pytest-notification.svg?branch=develop
-  :target: https://travis-ci.org/LUMC/pytest-notification
+.. image:: https://travis-ci.org/rhpvorderman/pytest-notification.svg?branch=develop
+  :target: https://travis-ci.org/rhpvorderman/pytest-notification
   :alt:
 
-.. image:: https://codecov.io/gh/LUMC/pytest-notification/branch/develop/graph/badge.svg
-  :target: https://codecov.io/gh/LUMC/pytest-notification
+.. image:: https://codecov.io/gh/rhpvorderman/pytest-notification/branch/develop/graph/badge.svg
+  :target: https://codecov.io/gh/rhpvorderman/pytest-notification
   :alt:
 
 A plugin for pytest that sends notifications if a ``--notify`` flag is passed
